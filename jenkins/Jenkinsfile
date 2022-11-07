@@ -24,5 +24,29 @@ pipeline {
                 sh './jenkins/scripts/deliver.sh'
             }
         }
+        stage('myStage') {
+            steps {
+                echo 'within myStage'
+                script {
+                    if (env.BRANCH_NAME == "master") {
+                        echo 'triggered by master'
+                    } else if (env.BRANCH_NAME == "feature/hot-fix") {
+                        echo 'triggered by something else'
+                    } else {
+                        echo 'triggered by something else'
+                    }
+                }
+            }
+        }
+        stage('Push artifacts to S3 Bucket') {
+            steps {
+                sh './jenkins/scripts/deliver.sh'
+            }
+        }
+        stage('Deploy the Application') {
+            steps {
+                sh './jenkins/scripts/deliver.sh'
+            }
+        }
     }
 }
