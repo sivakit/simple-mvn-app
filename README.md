@@ -1,1 +1,1 @@
-# simple-mvn-app
+# simple-java-app
